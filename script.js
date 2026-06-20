@@ -33,22 +33,23 @@ function saveState() {
 }
 
 function updateUI() {
-  picksLeftEl.textContent = state.picksLeft;
-
   document.querySelectorAll(".drawer").forEach(button => {
-    button.disabled = state.picksLeft <= 0;
+    const category = button.dataset.category;
+
+    if (state.opened.includes(category)) {
+      button.disabled = true;
+      button.innerHTML =
+        "✅ " +
+        category.charAt(0).toUpperCase() +
+        category.slice(1);
+    }
   });
 
   emergencyBtn.disabled = state.emergencyUsed;
+
   emergencyBtn.textContent = state.emergencyUsed
     ? "🚨 Emergency Drawer Used"
     : "🚨 Emergency Drawer";
-}
-
-function showMessage(title, text) {
-  messageTitle.textContent = title;
-  messageText.textContent = text;
-  modal.classList.remove("hidden");
 }
 
 function randomFrom(array) {
