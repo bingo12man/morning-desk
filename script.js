@@ -1,9 +1,9 @@
-const categoryTitles = {
-  courage: "💗 Courage",
-  joy: "⭐ Joy",
-  luck: "🍀 Luck",
-  calm: "☁️ Calm",
-  focus: "🌸 Focus"
+const categoryData = {
+  courage: { title: "Courage", icon: "💗" },
+  joy: { title: "Joy", icon: "⭐" },
+  luck: { title: "Luck", icon: "🍀" },
+  calm: { title: "Calm", icon: "☁️" },
+  focus: { title: "Focus", icon: "🌸" }
 };
 
 let messages = {};
@@ -19,14 +19,26 @@ let state = saved.date === today
       emergencyUsed: false
     };
 
-const modal = document.getElementById("modal");
+const messageCard = document.getElementById("messageCard");
+const messageIcon = document.getElementById("messageIcon");
 const messageTitle = document.getElementById("messageTitle");
 const messageText = document.getElementById("messageText");
-const closeModal = document.getElementById("closeModal");
+const closeMessage = document.getElementById("closeMessage");
 const emergencyBtn = document.getElementById("emergencyBtn");
 
 function saveState() {
   localStorage.setItem("evelynDesk", JSON.stringify(state));
+}
+
+function randomFrom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function showMessage(icon, title, text) {
+  messageIcon.textContent = icon;
+  messageTitle.textContent = title;
+  messageText.textContent = text;
+  messageCard.classList.add("show");
 }
 
 function updateUI() {
@@ -35,27 +47,20 @@ function updateUI() {
 
     if (state.opened.includes(category)) {
       button.disabled = true;
-      button.innerHTML =
-        "✅ " +
-        category.charAt(0).toUpperCase() +
-        category.slice(1);
+      button.innerHTML = `
+        <span class="icon">✅</span>
+        <span>Opened</span>
+      `;
     }
   });
 
-  emergencyBtn.disabled = state.emergencyUsed;
-  emergencyBtn.textContent = state.emergencyUsed
-    ? "🚨 Emergency Drawer Used"
-    : "🚨 Emergency Drawer";
-}
-
-function showMessage(title, text) {
-  messageTitle.textContent = title;
-  messageText.textContent = text;
-  modal.classList.remove("hidden");
-}
-
-function randomFrom(array) {
-  return array[Math.floor(Math.random() * array.length)];
+  if (state.emergencyUsed) {
+    emergencyBtn.disabled = true;
+    emergencyBtn.innerHTML = `
+      🚨 Emergency Used
+      <small>Come back tomorrow</small>
+    `;
+  }
 }
 
 document.querySelectorAll(".drawer").forEach(button => {
@@ -64,13 +69,14 @@ document.querySelectorAll(".drawer").forEach(button => {
 
     if (state.opened.includes(category)) return;
 
+    const item = categoryData[category];
     const text = randomFrom(messages[category]);
 
     state.opened.push(category);
     saveState();
     updateUI();
 
-    showMessage(categoryTitles[category], text);
+    showMessage(item.icon, item.title, text);
   });
 });
 
@@ -82,19 +88,18 @@ emergencyBtn.addEventListener("click", () => {
   updateUI();
 
   showMessage(
-    "🚨 Emergency Drawer",
+    "🚨",
+    "Emergency Drawer",
     "Dear Evelyn,\n\nThis is your reminder that bad days eventually become stories.\n\nKeep going. You are doing better than you think. 💛"
   );
 });
 
-closeModal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-modal.addEventListener("click", e => {
-  if (e.target === modal) {
-    modal.classList.add("hidden");
-  }
+closeMessage.addEventListener("click", () => {
+  showMessage(
+    "🌸",
+    "Welcome, Evelyn!",
+    "Pick one drawer below whenever you need a little note just for you. ✨"
+  );
 });
 
 fetch("messages.json")
