@@ -8,18 +8,25 @@
 </head>
 <body>
   <main class="scene">
+    <div class="window"></div>
 
-    <div class="wall-note left-note">
-      You’ve<br>got this,<br>Evelyn. 💗
-    </div>
-
-    <div class="wall-note right-note">
-      ♡<br>It’s okay<br>to have a<br>slow day.
-    </div>
+    <div class="sticky left-note">You’ve<br>got this,<br>Evelyn. 💗</div>
+    <div class="hanging-note">♡<br>It’s okay<br>to have a<br>slow day.</div>
 
     <h1>Evelyn’s Morning Desk 🌸</h1>
     <p class="subtitle">Pick one when you need a little reminder.</p>
     <div class="heart">💗</div>
+
+    <div class="decor decor-vase">
+      <div class="flower f1">✿</div><div class="flower f2">✿</div><div class="flower f3">✿</div>
+    </div>
+
+    <div class="decor books">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="decor mug">♡</div>
+    <div class="decor candle">Take it<br>one step<br>at a time.</div>
 
     <section class="message-card" id="messageCard">
       <button id="closeMessage" class="close">×</button>
@@ -28,32 +35,39 @@
       <p id="messageText">Pick one drawer below whenever you need a little light.</p>
     </section>
 
-    <div class="shelf-label">🌿 Pick one for yourself 🌿</div>
+    <div class="desk-top">
+      <div class="shelf-label">🌿 Pick one for yourself 🌿</div>
+    </div>
 
     <section class="drawer-row">
       <button class="drawer courage" data-category="courage">
-        <span class="icon">💗</span>
-        <span>Courage</span>
+        <span class="top-icon">💗</span>
+        <span class="label">Courage</span>
+        <span class="knob"></span>
       </button>
 
       <button class="drawer joy" data-category="joy">
-        <span class="icon">⭐</span>
-        <span>Joy</span>
+        <span class="top-icon">⭐</span>
+        <span class="label">Joy</span>
+        <span class="knob"></span>
       </button>
 
       <button class="drawer luck" data-category="luck">
-        <span class="icon">🍀</span>
-        <span>Luck</span>
+        <span class="top-icon">🍀</span>
+        <span class="label">Luck</span>
+        <span class="knob"></span>
       </button>
 
       <button class="drawer calm" data-category="calm">
-        <span class="icon">☁️</span>
-        <span>Calm</span>
+        <span class="top-icon">☁️</span>
+        <span class="label">Calm</span>
+        <span class="knob"></span>
       </button>
 
       <button class="drawer focus" data-category="focus">
-        <span class="icon">🌸</span>
-        <span>Focus</span>
+        <span class="top-icon">🌸</span>
+        <span class="label">Focus</span>
+        <span class="knob"></span>
       </button>
     </section>
 
@@ -66,10 +80,7 @@
       </button>
     </div>
 
-    <footer>
-      Made with 💗 for Evelyn
-    </footer>
-
+    <footer>Made with 💗 for Evelyn</footer>
   </main>
 
   <script src="script.js"></script>
