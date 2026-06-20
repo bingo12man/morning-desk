@@ -7,29 +7,69 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="app">
-    <section class="card">
-      <h1>Evelyn's Morning Desk 🌸</h1>
-      <p class="subtitle">Pick one when the day feels heavy.</p>
+  <main class="scene">
 
-      <div class="drawer-grid">
-        <button class="drawer" data-category="courage">💗 Courage</button>
-        <button class="drawer" data-category="joy">⭐ Joy</button>
-        <button class="drawer" data-category="luck">🍀 Luck</button>
-        <button class="drawer" data-category="calm">☁️ Calm</button>
-        <button class="drawer" data-category="focus">🌸 Focus</button>
-      </div>
+    <div class="wall-note left-note">
+      You’ve<br>got this,<br>Evelyn. 💗
+    </div>
 
-      <button id="emergencyBtn" class="emergency">🚨 Emergency Drawer</button>
+    <div class="wall-note right-note">
+      ♡<br>It’s okay<br>to have a<br>slow day.
+    </div>
+
+    <h1>Evelyn’s Morning Desk 🌸</h1>
+    <p class="subtitle">Pick one when you need a little reminder.</p>
+    <div class="heart">💗</div>
+
+    <section class="message-card" id="messageCard">
+      <button id="closeMessage" class="close">×</button>
+      <div id="messageIcon" class="big-icon">☁️</div>
+      <h2 id="messageTitle">Welcome</h2>
+      <p id="messageText">Pick one drawer below whenever you need a little light.</p>
     </section>
 
-    <div id="modal" class="modal hidden">
-      <div class="message-box">
-        <button id="closeModal" class="close">×</button>
-        <h2 id="messageTitle"></h2>
-        <p id="messageText"></p>
-      </div>
+    <div class="shelf-label">🌿 Pick one for yourself 🌿</div>
+
+    <section class="drawer-row">
+      <button class="drawer courage" data-category="courage">
+        <span class="icon">💗</span>
+        <span>Courage</span>
+      </button>
+
+      <button class="drawer joy" data-category="joy">
+        <span class="icon">⭐</span>
+        <span>Joy</span>
+      </button>
+
+      <button class="drawer luck" data-category="luck">
+        <span class="icon">🍀</span>
+        <span>Luck</span>
+      </button>
+
+      <button class="drawer calm" data-category="calm">
+        <span class="icon">☁️</span>
+        <span>Calm</span>
+      </button>
+
+      <button class="drawer focus" data-category="focus">
+        <span class="icon">🌸</span>
+        <span>Focus</span>
+      </button>
+    </section>
+
+    <div class="bottom-area">
+      <div class="tiny-card">You are enough,<br>exactly as you are. 💗</div>
+
+      <button id="emergencyBtn" class="emergency">
+        🚨 Emergency Drawer
+        <small>Use only when necessary</small>
+      </button>
     </div>
+
+    <footer>
+      Made with 💗 for Evelyn
+    </footer>
+
   </main>
 
   <script src="script.js"></script>
