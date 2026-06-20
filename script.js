@@ -15,7 +15,11 @@ const saved = JSON.parse(localStorage.getItem("evelynDesk")) || {};
 
 let state = saved.date === today
   ? saved
-  : { date: today, picksLeft: DAILY_LIMIT, emergencyUsed: false };
+  : {
+      date: today,
+      opened: [],
+      emergencyUsed: false
+    };
 
 const picksLeftEl = document.getElementById("picksLeft");
 const modal = document.getElementById("modal");
