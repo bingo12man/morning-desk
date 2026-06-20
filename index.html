@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evelyn's Morning Desk</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <h1>Evelyn's Morning Desk 🌸</h1>
+      <p class="subtitle">Pick one when the day feels heavy.</p>
 
+      <div class="counter">
+        Picks left today: <span id="picksLeft">5</span>
+      </div>
+
+      <div class="drawer-grid">
+        <button class="drawer" data-category="courage">💗 Courage</button>
+        <button class="drawer" data-category="joy">⭐ Joy</button>
+        <button class="drawer" data-category="luck">🍀 Luck</button>
+        <button class="drawer" data-category="calm">☁️ Calm</button>
+        <button class="drawer" data-category="focus">🌸 Focus</button>
+      </div>
+
+      <button id="emergencyBtn" class="emergency">🚨 Emergency Drawer</button>
+    </section>
+
+    <div id="modal" class="modal hidden">
+      <div class="message-box">
+        <button id="closeModal" class="close">×</button>
+        <h2 id="messageTitle"></h2>
+        <p id="messageText"></p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
