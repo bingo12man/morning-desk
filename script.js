@@ -1,5 +1,3 @@
-const DAILY_LIMIT = 5;
-
 const categoryTitles = {
   courage: "💗 Courage",
   joy: "⭐ Joy",
@@ -21,7 +19,6 @@ let state = saved.date === today
       emergencyUsed: false
     };
 
-const picksLeftEl = document.getElementById("picksLeft");
 const modal = document.getElementById("modal");
 const messageTitle = document.getElementById("messageTitle");
 const messageText = document.getElementById("messageText");
@@ -46,10 +43,15 @@ function updateUI() {
   });
 
   emergencyBtn.disabled = state.emergencyUsed;
-
   emergencyBtn.textContent = state.emergencyUsed
     ? "🚨 Emergency Drawer Used"
     : "🚨 Emergency Drawer";
+}
+
+function showMessage(title, text) {
+  messageTitle.textContent = title;
+  messageText.textContent = text;
+  modal.classList.remove("hidden");
 }
 
 function randomFrom(array) {
@@ -58,15 +60,13 @@ function randomFrom(array) {
 
 document.querySelectorAll(".drawer").forEach(button => {
   button.addEventListener("click", () => {
-    if (state.picksLeft <= 0) {
-      showMessage("🌙 Desk Closed", "Your five picks are done for today. Come back tomorrow, Evelyn.");
-      return;
-    }
-
     const category = button.dataset.category;
+
+    if (state.opened.includes(category)) return;
+
     const text = randomFrom(messages[category]);
 
-    state.picksLeft -= 1;
+    state.opened.push(category);
     saveState();
     updateUI();
 
@@ -91,7 +91,7 @@ closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
-modal.addEventListener("click", (e) => {
+modal.addEventListener("click", e => {
   if (e.target === modal) {
     modal.classList.add("hidden");
   }
