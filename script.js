@@ -6,7 +6,23 @@ const categoryData = {
   focus: { title: "Focus", icon: "🌸" }
 };
 
-let messages = {};
+const messages = {
+  courage: [
+    "En Chellom,\nIn case nobody reminded you today: you're much stronger than you give yourself credit for."
+  ],
+  joy: [
+    "Madam,\nKonjam sirichidu.\n\nThe world is a noticeably nicer place when you're smiling."
+  ],
+  luck: [
+    "Luck has officially been informed that Evelyn is awake.\n\nIt should arrive shortly."
+  ],
+  calm: [
+    "Evelyene,\nInniku ellathayum solve panna vendam.\n\nThe next hour is enough."
+  ],
+  focus: [
+    "Thangome,\nOne small step.\n\nOne small win.\n\nThat's all today's mission is."
+  ]
+};
 
 const today = new Date().toISOString().slice(0, 10);
 const saved = JSON.parse(localStorage.getItem("evelynDesk")) || {};
@@ -19,7 +35,6 @@ let state = saved.date === today
       emergencyUsed: false
     };
 
-const messageCard = document.getElementById("messageCard");
 const messageIcon = document.getElementById("messageIcon");
 const messageTitle = document.getElementById("messageTitle");
 const messageText = document.getElementById("messageText");
@@ -28,10 +43,6 @@ const emergencyBtn = document.getElementById("emergencyBtn");
 
 function saveState() {
   localStorage.setItem("evelynDesk", JSON.stringify(state));
-}
-
-function randomFrom(array) {
-  return array[Math.floor(Math.random() * array.length)];
 }
 
 function showMessage(icon, title, text) {
@@ -70,7 +81,7 @@ document.querySelectorAll(".drawer").forEach(button => {
     if (state.opened.includes(category)) return;
 
     const item = categoryData[category];
-    const text = randomFrom(messages[category]);
+    const text = messages[category][0];
 
     state.opened.push(category);
     saveState();
@@ -88,11 +99,10 @@ emergencyBtn.addEventListener("click", () => {
   updateUI();
 
   showMessage(
-    "🚨",
-    "Emergency Drawer",
-    "Dear Evelyn,\n\nThis is your reminder that even on bad days, you are still someone’s favorite person.\n\nTake a breath. You don’t have to win the whole day at once.\n\n-K"
-  );
-});
+  "🚨",
+  "Emergency Drawer",
+  "Mazhai vandha bhoomi azhagu,\n\nNilavu vandha vaanam azhagu,\n\nNee nadandhu vandha nerathula,\n\nAzhagukkum konjam competition azhagu."
+);
 
 closeMessage.addEventListener("click", () => {
   showMessage(
@@ -102,29 +112,4 @@ closeMessage.addEventListener("click", () => {
   );
 });
 
-fetch("messages.json?v=" + Date.now())
-  .then(res => res.json())
-  .then(data => {
-    messages = data;
-    updateUI();
-  })
-  .catch(() => {
-    messages = {
-      courage: [
-        "En Chellom,\n\nIn case nobody reminded you today: you're much stronger than you give yourself credit for.\n\n-K"
-      ],
-      joy: [
-        "En Chellom,\n\nYour laugh is probably someone’s favorite sound.\n\n-K"
-      ],
-      luck: [
-        "En Chellom,\n\nLuck has been informed that Evelyn is awake. It should arrive shortly.\n\n-K"
-      ],
-      calm: [
-        "En Chellom,\n\nTake one slow breath. You don’t have to solve the whole day right now.\n\n-K"
-      ],
-      focus: [
-        "En Chellom,\n\nPick one thing. Do that thing. Declare victory.\n\n-K"
-      ]
-    };
-    updateUI();
-  });
+updateUI();
