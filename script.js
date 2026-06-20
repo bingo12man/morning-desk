@@ -110,7 +110,8 @@ fetch("messages.json")
   })
   .catch(() => {
     messages = {
-      calm: ["Take one slow breath. The whole day does not need to be solved right now."],
+      calm: ["En Chellom,\n\nIn case nobody reminded you today: you're much stronger than you give yourself credit for.\n\n-K",
+],
       joy: ["Somewhere in the world, a dog is having the best day ever."],
       courage: ["You have survived every hard day so far."],
       luck: ["Something tiny and good may find you today."],
