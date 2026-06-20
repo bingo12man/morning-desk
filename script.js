@@ -38,7 +38,6 @@ function showMessage(icon, title, text) {
   messageIcon.textContent = icon;
   messageTitle.textContent = title;
   messageText.textContent = text;
-  messageCard.classList.add("show");
 }
 
 function updateUI() {
@@ -48,8 +47,9 @@ function updateUI() {
     if (state.opened.includes(category)) {
       button.disabled = true;
       button.innerHTML = `
-        <span class="icon">✅</span>
-        <span>Opened</span>
+        <span class="top-icon">✅</span>
+        <span class="label">Opened</span>
+        <span class="knob"></span>
       `;
     }
   });
@@ -90,19 +90,19 @@ emergencyBtn.addEventListener("click", () => {
   showMessage(
     "🚨",
     "Emergency Drawer",
-    "Dear Evelyn,\n\nThis is your reminder that bad days eventually become stories.\n\nKeep going. You are doing better than you think. 💛"
+    "Dear Evelyn,\n\nThis is your reminder that even on bad days, you are still someone’s favorite person.\n\nTake a breath. You don’t have to win the whole day at once.\n\n-K"
   );
 });
 
 closeMessage.addEventListener("click", () => {
   showMessage(
     "🌸",
-    "Welcome, Evelyn!",
-    "Pick one drawer below whenever you need a little note just for you. ✨"
+    "Welcome",
+    "Pick one drawer below whenever you need a little light."
   );
 });
 
-fetch("messages.json")
+fetch("messages.json?v=" + Date.now())
   .then(res => res.json())
   .then(data => {
     messages = data;
@@ -110,12 +110,21 @@ fetch("messages.json")
   })
   .catch(() => {
     messages = {
-      calm: ["En Chellom,\n\nIn case nobody reminded you today: you're much stronger than you give yourself credit for.\n\n-K",
-],
-      joy: ["Somewhere in the world, a dog is having the best day ever."],
-      courage: ["You have survived every hard day so far."],
-      luck: ["Something tiny and good may find you today."],
-      focus: ["Do only the next small thing. That is enough."]
+      courage: [
+        "En Chellom,\n\nIn case nobody reminded you today: you're much stronger than you give yourself credit for.\n\n-K"
+      ],
+      joy: [
+        "En Chellom,\n\nYour laugh is probably someone’s favorite sound.\n\n-K"
+      ],
+      luck: [
+        "En Chellom,\n\nLuck has been informed that Evelyn is awake. It should arrive shortly.\n\n-K"
+      ],
+      calm: [
+        "En Chellom,\n\nTake one slow breath. You don’t have to solve the whole day right now.\n\n-K"
+      ],
+      focus: [
+        "En Chellom,\n\nPick one thing. Do that thing. Declare victory.\n\n-K"
+      ]
     };
     updateUI();
   });
