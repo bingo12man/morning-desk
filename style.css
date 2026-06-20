@@ -19,6 +19,9 @@ body{
   text-align:center;
   padding:12px 120px 8px;
   overflow:hidden;
+  transform: scale(1.15);
+  transform-origin: top center;
+  padding-top: 10px;
 }
 
 h1{
@@ -87,6 +90,7 @@ h1{
   box-shadow:0 14px 36px rgba(70,40,30,.16);
   position:relative;
   z-index:4;
+  margin-bottom: 8px;
 }
 
 .big-icon{
@@ -215,6 +219,7 @@ h1{
   width:860px;
   height:42px;
   margin:0 auto;
+  margin-top: -4px;
   background:repeating-linear-gradient(90deg,#a66538 0,#a66538 38px,#985a30 39px,#985a30 76px);
   border-radius:10px 10px 0 0;
 }
@@ -295,6 +300,7 @@ h1{
 .bottom-area{
   width:760px;
   margin:12px auto 0;
+  margin-top: 10px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -333,11 +339,15 @@ h1{
 }
 
 footer{
-  margin-top:6px;
+  margin-top: 4px;
   color:#7d5d62;
   font-size:.8rem;
 }
-
+@media (max-width: 1300px) {
+  .scene {
+    transform: scale(1.05);
+  }
+}
 @media(max-width:768px){
   html,body{
     overflow:auto;
