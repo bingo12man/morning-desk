@@ -7,21 +7,11 @@ const categoryData = {
 };
 
 const messages = {
-  courage: [
-    "En Chellom,\nIn case nobody reminded you today: you're much stronger than you give yourself credit for."
-  ],
-  joy: [
-    "Madam,\nKonjam sirichidu.\n\nThe world is a noticeably nicer place when you're smiling."
-  ],
-  luck: [
-    "Luck has officially been informed that Evelyn is awake.\n\nIt should arrive shortly."
-  ],
-  calm: [
-    "Evelyene,\nInniku ellathayum solve panna vendam.\n\nThe next hour is enough."
-  ],
-  focus: [
-    "Thangome,\nOne small step.\n\nOne small win.\n\nThat's all today's mission is."
-  ]
+  courage: ["En Chellom,\n\nIn case nobody reminded you today: you're much stronger than you give yourself credit for."],
+  joy: ["Madam,\n\nKonjam sirichidu.\n\nThe world is a noticeably nicer place when you're smiling."],
+  luck: ["Luck has officially been informed that Evelyn is awake.\n\nIt should arrive shortly."],
+  calm: ["Evelyene,\n\nInniku ellathayum solve panna vendam.\n\nThe next hour is enough."],
+  focus: ["Thangome,\n\nOne small step.\n\nOne small win.\n\nThat's all today's mission is."]
 };
 
 const today = new Date().toISOString().slice(0, 10);
@@ -29,11 +19,7 @@ const saved = JSON.parse(localStorage.getItem("evelynDesk")) || {};
 
 let state = saved.date === today
   ? saved
-  : {
-      date: today,
-      opened: [],
-      emergencyUsed: false
-    };
+  : { date: today, opened: [], emergencyUsed: false };
 
 const messageIcon = document.getElementById("messageIcon");
 const messageTitle = document.getElementById("messageTitle");
@@ -77,7 +63,6 @@ function updateUI() {
 document.querySelectorAll(".drawer").forEach(button => {
   button.addEventListener("click", () => {
     const category = button.dataset.category;
-
     if (state.opened.includes(category)) return;
 
     const item = categoryData[category];
@@ -99,10 +84,11 @@ emergencyBtn.addEventListener("click", () => {
   updateUI();
 
   showMessage(
-  "🚨",
-  "Emergency Drawer",
-  "Mazhai vandha bhoomi azhagu,\n\nNilavu vandha vaanam azhagu,\n\nNee nadandhu vandha nerathula,\n\nAzhagukkum konjam competition azhagu."
-);
+    "🚨",
+    "Emergency Drawer",
+    "Mazhai vandha bhoomi azhagu,\n\nNilavu vandha vaanam azhagu,\n\nNee nadandhu vandha nerathula,\n\nAzhagukkum konjam competition azhagu."
+  );
+});
 
 closeMessage.addEventListener("click", () => {
   showMessage(
